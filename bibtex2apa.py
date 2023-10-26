@@ -11,7 +11,7 @@ openai_key = os.environ['OPENAI_API_KEY']
 llm = ChatOpenAI(model_name='gpt-3.5-turbo')
 
 template = '''
-Convert this BibTeX style reference to APA style.
+Convert BibTeX style reference to APA style.
 
 ### Output rules
 1. If the input reference text includes 'URL' tag, insert the URL at the end of the output in the format "URL: url". Otherwise not insert "URL" text.
