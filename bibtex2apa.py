@@ -1,5 +1,6 @@
 import os
 import sys
+from distutils.util import strtobool
 from dotenv import load_dotenv
 from langchain.prompts import PromptTemplate
 from langchain.chat_models import ChatOpenAI
@@ -7,6 +8,7 @@ from langchain.chains import LLMChain
 
 load_dotenv()
 openai_key = os.environ['OPENAI_API_KEY']
+verbose = strtobool(os.environ.get('VERBOSE', 'False'))
 
 llm = ChatOpenAI(model_name='gpt-3.5-turbo')
 
@@ -31,6 +33,6 @@ prompt = PromptTemplate(
     template=template,
 )
 
-chain = LLMChain(llm=llm, prompt=prompt, verbose=False)
+chain = LLMChain(llm=llm, prompt=prompt, verbose=verbose)
 
 print(chain(sys.stdin.read())['text'])
